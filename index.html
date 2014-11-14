@@ -9,23 +9,35 @@
     <script type="text/javascript" src="js/underscore-min.js"></script>
     <script type="text/javascript" src="js/angular.min.js"></script>
     <script type="text/javascript" src="js/angular-ui-tree.min.js"></script>
+    <script type="text/javascript" src="js/helper.js"></script>
     <script type="text/javascript" src="js/demo.js"></script>
 </head>
 <body ng-app="demoApp">
-<div class="container">
+<div class="container" ng-controller="MainCtrl">
 
     <div class="jumbotron" ng-hide="build">
-        <h1>Mira<small class="visible-md-block visible-lg-block visible-md-block visible-xs-block">O que deseja fazer?<small></h1>
+        <h1>Mira<small class="visible-md-block visible-lg-block visible-md-block visible-xs-block">O que deseja fazer?</small></h1>
         <button class="btn btn-success" ng-click="exibirMontador(this)">Criar nova interface</button>
         <button class="btn btn-info" ng-click="exibirTextarea(this)">Alterar uma existente</button>
     </div>
 
+    <div ng-show="textarea">
+        <div class="form-horizontal well" role="form">
+            <div class="form-group">
+                <h3>Cole o código da interface abstrata que deseja alterar:</h3>
+                <textarea id="codigo" class="form-control" rows="20" ng-model="code_abstract" placeholder="// neste formato:
+{{ abstract | json }}">
+                </textarea>
+            </div>
+        </div>
+        <button class="btn btn-success" ng-click="carregar(this)">Carregar</button>
+    </div>
+
     <div class="row" ng-show="build">
         <div class="col-md-12">
-            <div class="row" ng-controller="MainCtrl">
+            <div class="row">
                 <div class="col-lg-12">
                     <h3>Interface Abstrata</h3>
-
                     <div class="form-horizontal well" role="form">
                         <div class="form-group">
                             <label for="name" class="col-sm-1 control-label">Name:</label>
@@ -69,7 +81,7 @@
 
                 <div class="col-lg-6">
                     <h3>Json for abstract collection</h3>
-                    <pre class="code">{{ abstract | json }}</pre>
+                    <pre class="code">{{ abstract_source }}</pre>
                 </div>
                 <div class="col-lg-6">
                     <h3>Json for concrete collection</h3>

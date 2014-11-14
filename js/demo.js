@@ -8,7 +8,6 @@
 
     angular.module('demoApp', ['ui.tree', 'underscore'])
         .controller('MainCtrl', function ($scope, _) {
-            $scope.build = true;
             $scope.abstract = {};
             $scope.abstract.name = '';
             $scope.abstract.widgets = [
@@ -22,6 +21,7 @@
             $scope.options = {};
 
             $scope.$watch(function(scope){
+                scope.abstract_source = source(scope.abstract);
                 scope.concrete = build_concrete(scope.abstract)
             });
 
@@ -29,9 +29,9 @@
     name: "<%= concrete.name %>",\n\
     head: [ ],\n\
     maps: [\n\
-    <% _.each(concrete.maps, function(map){ %>\
-        { name: "<%= map.name %>"},\n\
-    <% }); %>\
+    <% _.each(concrete.maps, function(map){ if(map.name) { %>\
+        { name: "<%= map.name %>" },\n\
+    <% }}); %>\
     ]\n\
 }');
 
@@ -77,6 +77,18 @@
             };
 
             $scope.exibirTextarea = function(scope){
+                $scope.textarea = true;
+            };
+
+            $scope.carregar = function(scope){
+                try{
+                    $scope.abstract = eval('('+ scope.code_abstract + ')');
+
+                    $scope.textarea = false;
+                    $scope.build = true;
+                }catch (ex){
+
+                }
 
             };
         });
