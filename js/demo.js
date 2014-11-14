@@ -73,6 +73,7 @@
             };
 
             $scope.exibirMontador = function(scope){
+                $scope.textarea = false;
                 $scope.build = true;
             };
 

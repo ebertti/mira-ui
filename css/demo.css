@@ -3,6 +3,16 @@
     margin-right: 8px;
 }
 
+.angular-ui-tree {
+    background: repeating-linear-gradient(
+            to right,
+            #D1D1D1,
+            #D1D1D1 21px,
+            #ffffff 21px,
+            #ffffff 42px
+    );
+}
+
 .angular-ui-tree-handle {
     background: #f8faff;
     border: 1px solid #dae2ea;
