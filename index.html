@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Build de interface abstrata e concreta</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/angular-ui-tree.min.css">
+    <link rel="stylesheet" href="css/demo.css">
+    <script type="text/javascript" src="js/underscore-min.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/angular-ui-tree.min.js"></script>
+    <script type="text/javascript" src="js/demo.js"></script>
+</head>
+<body ng-app="demoApp">
+<div class="container">
+
+    <div class="jumbotron" ng-hide="build">
+        <h1>Mira<small class="visible-md-block visible-lg-block visible-md-block visible-xs-block">O que deseja fazer?<small></h1>
+        <button class="btn btn-success" ng-click="exibirMontador(this)">Criar nova interface</button>
+        <button class="btn btn-info" ng-click="exibirTextarea(this)">Alterar uma existente</button>
+    </div>
+
+    <div class="row" ng-show="build">
+        <div class="col-md-12">
+            <div class="row" ng-controller="MainCtrl">
+                <div class="col-lg-12">
+                    <h3>Interface Abstrata</h3>
+
+                    <div class="form-horizontal well" role="form">
+                        <div class="form-group">
+                            <label for="name" class="col-sm-1 control-label">Name:</label>
+
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="name" ng-model="abstract.name" placeholder="name">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Nested list template -->
+                    <script type="text/ng-template" id="items_renderer.html">
+                        <div ui-tree-handle>
+                            <a class="btn btn-success btn-xs" data-nodrag ng-click="toggle(this)">
+                                <span class="glyphicon"
+                                      ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"></span>
+                            </a>
+                            <input type="text" ng-model="widget.name" placeholder="name"/>
+                            <input type="text" ng-model="widget.datasource" placeholder="datasource"/>
+                            <input type="text" ng-model="widget.when" placeholder="when"/>
+                            <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="remove(this)">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                            <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="newSubItem(this)" style="margin-right: 8px;">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </a>
+                        </div>
+                        <ol ui-tree-nodes="options" ng-model="widget.children" ng-class="{hidden: collapsed}">
+                            <li ng-repeat="widget in widget.children" ui-tree-node ng-include="'items_renderer.html'">
+                            </li>
+                        </ol>
+                    </script>
+
+                    <div ui-tree="options">
+                        <ol ui-tree-nodes ng-model="abstract.widgets">
+                            <li ng-repeat="widget in abstract.widgets" ui-tree-node ng-include="'items_renderer.html'"></li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <h3>Json for abstract collection</h3>
+                    <pre class="code">{{ abstract | json }}</pre>
+                </div>
+                <div class="col-lg-6">
+                    <h3>Json for concrete collection</h3>
+                    <pre class="code">{{ concrete }}</pre>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
