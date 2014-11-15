@@ -57,12 +57,12 @@
                     <script type="text/ng-template" id="items_renderer.html">
                         <div ui-tree-handle>
                             <a class="btn btn-success btn-xs" data-nodrag ng-click="toggle(this)">
-                                <span class="glyphicon"
-                                      ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"></span>
+                                <span class="glyphicon" ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"></span>
+                                <span class="badge" ng-show="collapsed">{{ widget.children.length }}</span>
                             </a>
                             <input type="text" ng-model="widget.name" placeholder="name"/>
-                            <input type="text" ng-model="widget.datasource" placeholder="datasource"/>
-                            <input type="text" ng-model="widget.when" placeholder="when"/>
+                            <input type="text" ng-model="widget.datasource" ng-change="limpar(this)" placeholder="datasource"/>
+                            <input type="text" ng-model="widget.when" ng-change="limpar(this)" placeholder="when"/>
                             <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="remove(this)">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </a>
@@ -84,11 +84,11 @@
                 </div>
 
                 <div class="col-lg-6">
-                    <h3>Json for abstract collection</h3>
+                    <h3>Interface Abstrata</h3>
                     <div hljs compile="true" language="javascript" source="abstract_source"></div>
                 </div>
                 <div class="col-lg-6">
-                    <h3>Json for concrete collection</h3>
+                    <h3>Início da Interface Concreta</h3>
                     <div hljs compile="true" language="javascript" source="concrete"></div>
 
                 </div>

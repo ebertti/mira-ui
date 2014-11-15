@@ -91,6 +91,15 @@
                 $scope.textarea = true;
             };
 
+            $scope.limpar = function(scope){
+                if(scope.$modelValue.when == ""){
+                    delete scope.$modelValue.when;
+                }
+                if(scope.$modelValue.datasource == ""){
+                    delete scope.$modelValue.datasource;
+                }
+            };
+
             $scope.carregar = function(scope){
                 try{
                     $scope.abstract = eval('('+ scope.code_abstract + ')');
