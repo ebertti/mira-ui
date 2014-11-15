@@ -22,7 +22,17 @@
 
             $scope.$watch(function(scope){
                 scope.abstract_source = source(scope.abstract);
-                scope.concrete = build_concrete(scope.abstract)
+                scope.concrete = build_concrete(scope.abstract);
+
+                try{
+                    var a = eval('('+ scope.code_abstract + ')');
+                    scope.ok_abstract = true;
+                    scope.error = undefined;
+                }catch (ex){
+                    scope.error = ex.message;
+                    scope.ok_abstract = false;
+                }
+
             });
 
             var templateConcrete = _.template('{\n\

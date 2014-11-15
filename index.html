@@ -23,14 +23,15 @@
 
     <div ng-show="textarea">
         <div class="form-horizontal well" role="form">
-            <div class="form-group">
+            <div class="form-group" ng-class="{'has-error': code_abstract && !ok_abstract, '': code_abstract && !ok_abstract }">
                 <h3>Cole o código da interface abstrata que deseja alterar:</h3>
-                <textarea id="codigo" class="form-control" rows="20" ng-model="code_abstract" placeholder="// neste formato:
+                <textarea id="codigo" class="form-control"  rows="20" ng-model="code_abstract" placeholder="// neste formato:
 {{ abstract | json }}">
                 </textarea>
             </div>
+            <pre class="code alert alert-danger" ng-show="error">{{ error }}</pre>
         </div>
-        <button class="btn btn-success" ng-click="carregar(this)">Carregar</button>
+        <button class="btn btn-success" ng-disabled="!ok_abstract" ng-click="carregar(this)">Carregar</button>
     </div>
 
     <div class="row" ng-show="build">
