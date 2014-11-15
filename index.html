@@ -5,11 +5,14 @@
     <title>Build de interface abstrata e concreta</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/angular-ui-tree.min.css">
+    <link rel="stylesheet" href="css/vs.css">
     <link rel="stylesheet" href="css/demo.css">
     <script type="text/javascript" src="js/underscore-min.js"></script>
     <script type="text/javascript" src="js/angular.min.js"></script>
     <script type="text/javascript" src="js/angular-ui-tree.min.js"></script>
     <script type="text/javascript" src="js/helper.js"></script>
+    <script type="text/javascript" src="js/highlight.pack.js"></script>
+    <script type="text/javascript" src="js/angular-highlightjs.js"></script>
     <script type="text/javascript" src="js/demo.js"></script>
 </head>
 <body ng-app="demoApp">
@@ -82,11 +85,12 @@
 
                 <div class="col-lg-6">
                     <h3>Json for abstract collection</h3>
-                    <pre class="code">{{ abstract_source }}</pre>
+                    <div hljs compile="true" language="javascript" source="abstract_source"></div>
                 </div>
                 <div class="col-lg-6">
                     <h3>Json for concrete collection</h3>
-                    <pre class="code">{{ concrete }}</pre>
+                    <div hljs compile="true" language="javascript" source="concrete"></div>
+
                 </div>
             </div>
 

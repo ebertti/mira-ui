@@ -6,7 +6,7 @@
         return window._; // assumes underscore has already been loaded on the page
     });
 
-    angular.module('demoApp', ['ui.tree', 'underscore'])
+    angular.module('demoApp', ['ui.tree', 'underscore', 'hljs'])
         .controller('MainCtrl', function ($scope, _) {
             $scope.abstract = {};
             $scope.abstract.name = '';
