@@ -55,15 +55,15 @@
 
                     <!-- Nested list template -->
                     <script type="text/ng-template" id="items_renderer.html">
-                        <div ui-tree-handle>
+                        <div ui-tree-handle ng-init="focarNome(this)">
                             <a class="btn btn-success btn-xs" data-nodrag ng-click="toggle(this)">
                                 <span class="glyphicon" ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"></span>
                                 <span class="badge" ng-show="collapsed">{{ widget.children.length }}</span>
                             </a>
-                            <input type="text" ng-model="widget.name" placeholder="name"/>
-                            <input type="text" ng-model="widget.datasource" ng-change="limpar(this)" placeholder="datasource"/>
-                            <input type="text" ng-model="widget.when" ng-change="limpar(this)" placeholder="when"/>
-                            <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="remove(this)">
+                            <input type="text" ng-model="widget.name" ng-keypress="adicionarOnEnter(this, $event)" placeholder="name"/>
+                            <input type="text" ng-model="widget.datasource" ng-keypress="adicionarOnEnter(this, $event)" ng-change="limpar(this)" placeholder="datasource"/>
+                            <input type="text" ng-model="widget.when" ng-keypress="adicionarOnEnter(this, $event)" ng-change="limpar(this)" placeholder="when"/>
+                            <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="remove(this)" ng-show="podeRemover(this)">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </a>
                             <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="newSubItem(this)" style="margin-right: 8px;">

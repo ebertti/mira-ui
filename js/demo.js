@@ -54,9 +54,11 @@
                 };
 
                 var insideTree = function(item){
-                    concrete.maps.push({
-                        name: item.name
-                    });
+                    if(!_.some(concrete.maps, function(i){ return i.name == item.name; })){
+                        concrete.maps.push({
+                            name: item.name
+                        });
+                    }
                     if(item.children){
                         _.each(item.children, insideTree);
                     }
@@ -72,6 +74,31 @@
 
             $scope.toggle = function (scope) {
                 scope.toggle();
+            };
+
+            $scope.podeRemover = function(scope){
+                return scope.$parentNodeScope != null;
+            };
+
+            $scope.adicionarOnEnter = function(scope, event){
+                if(event.which === 13) {
+                    if(event.shiftKey){
+                        scope.newSubItem(scope);
+                    } else {
+                        if(scope.$parentNodeScope) {
+                            scope.newSubItem(scope.$parentNodeScope);
+                        } else {
+                            $scope.abstract.widgets.push({
+                                name: ""
+                            })
+                        }
+                    }
+                }
+
+            };
+
+            $scope.focarNome = function(scope, $element){
+                scope.$element.find('input')[0].focus();
             };
 
             $scope.newSubItem = function (scope) {
