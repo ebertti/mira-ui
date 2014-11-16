@@ -77,7 +77,7 @@
             };
 
             $scope.podeRemover = function(scope){
-                return scope.$parentNodeScope != null;
+                return scope.$parentNodeScope != null || $scope.abstract.widgets.length > 1;
             };
 
             $scope.adicionarOnEnter = function(scope, event){
@@ -92,6 +92,19 @@
                                 name: ""
                             })
                         }
+                    }
+                } else if(event.which == 27){
+                    if(event.target.value == "") {
+                        if(scope.$modelValue.name || scope.$modelValue.datasource || scope.$modelValue.when){
+                            scope.$modelValue.name = '';
+                            delete scope.$modelValue.datasource;
+                            delete scope.$modelValue.when;
+                        } else if($scope.podeRemover(scope)){
+                            event.target.parentNode.parentNode.parentNode.parentNode.getElementsByTagName('input')[0].focus();
+                            scope.remove(scope);
+                        }
+                    } else {
+                        event.target.value = "";
                     }
                 }
 
