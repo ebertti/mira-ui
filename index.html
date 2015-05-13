@@ -61,9 +61,9 @@
                                 <span class="badge" ng-show="collapsed">{{ widget.children.length }}</span>
                             </a>
                             <input type="text" ng-model="widget.name" ng-keydown="adicionarOnEnter(this, $event)" placeholder="name"/>
-                            <input type="text" ng-model="widget.datasource" ng-if="widget.datasource"  ng-keydown="adicionarOnEnter(this, $event)" ng-change="limpar(this)" placeholder="datasource"/>
-                            <input type="text" ng-model="widget.when" ng-if="widget.when" ng-keydown="adicionarOnEnter(this, $event)" ng-change="limpar(this)" placeholder="when"/>
-                            <input type="text" ng-model="widget.bind" ng-if="widget.bind" ng-keydown="adicionarOnEnter(this, $event)" ng-change="limpar(this)" placeholder="bind"/>
+                            <input type="text" ng-model="widget.datasource" ng-keydown="adicionarOnEnter(this, $event)" ng-change="limpar(this)" placeholder="datasource"/>
+                            <input type="text" ng-model="widget.when" ng-keydown="adicionarOnEnter(this, $event)" ng-change="limpar(this)" placeholder="when"/>
+                            <input type="text" ng-model="widget.bind" ng-keydown="adicionarOnEnter(this, $event)" ng-change="limpar(this)" placeholder="bind"/>
                             <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="remove(this)" ng-show="podeRemover(this)">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </a>
